@@ -14,8 +14,9 @@ import StatModal from '../StatModal/StatModal';
 
 const useStyles = makeStyles({
     table: {
-      width: 800,
-      boxShadow: '5px 5px 20px lightgray'
+      width: '800px',
+      boxShadow: '5px 5px 20px lightgray',
+      marginBottom: '50px'
     }
   });
 
@@ -47,7 +48,7 @@ const MatchTable = ({allMatches, teamStats}) => {
     };
 
     return (
-        <div className='matchTable'>
+        <div className='tableContainer'>
             <StatModal 
                 isOpen={isOpen} 
                 closeModal={closeModal} 

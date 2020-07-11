@@ -1,8 +1,14 @@
-.matchTable{
+.tableContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+.tableStyle{
+    width: 800;
+    box-shadow: 5px 5px 20px lightgray;
+}
+
 .score{
     color: red;
     font-weight: 600;
