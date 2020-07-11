@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './MatchTable.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from "@material-ui/core/styles";
@@ -21,12 +21,20 @@ const useStyles = makeStyles({
 
 const MatchTable = ({allMatches, teamStats}) => {
     const classes = useStyles();
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [team, setTeam] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
 
     const openModal = event => {
-        alert(event.target.text)
+        setTeam(event.target.text)
+        setIsOpen(true)
         event.preventDefault();
+    }
+
+    const closeModal = () => {
+        setTeam('')
+        setIsOpen(false)
     }
 
     const handleChangePage = (event, newPage) => {
@@ -40,7 +48,12 @@ const MatchTable = ({allMatches, teamStats}) => {
 
     return (
         <div className='matchTable'>
-            <StatModal/>
+            <StatModal 
+                isOpen={isOpen} 
+                closeModal={closeModal} 
+                team={team} 
+                teamStats={teamStats}
+            />
 
             {
                 !allMatches.length && <CircularProgress />
