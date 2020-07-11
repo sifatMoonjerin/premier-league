@@ -24,14 +24,28 @@ const MatchTable = ({allMatches, teamStats}) => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+    const openModal = event => {
+        alert(event.target.text)
+        event.preventDefault();
+    }
+
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = event => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
     };
 
     return (
         <div className='matchTable'>
             <StatModal/>
-            {!allMatches.length && <CircularProgress />} 
+
+            {
+                !allMatches.length && <CircularProgress />
+            }
+
             {   
                 !!allMatches.length && <TableContainer className={classes.table} component={Paper}>
                     <Table aria-label="simple table">
@@ -51,9 +65,13 @@ const MatchTable = ({allMatches, teamStats}) => {
                                     {match.date}
                                 </TableCell>
                                 <TableCell align="center">
-                                    <a href='#'>{match.team1.name}</a>
+                                    <a href='#' onClick={openModal} className='teamName'>
+                                        {match.team1.name}
+                                    </a>
                                     <span>{' vs '}</span>
-                                    <a href='#'>{match.team2.name}</a>
+                                    <a href='#' onClick={openModal} className='teamName'>
+                                        {match.team2.name}
+                                    </a>
                                 </TableCell>
                                 <TableCell align="center">
                                     <span className='score'>{`${match.score1} - ${match.score2}`}</span>
@@ -63,12 +81,13 @@ const MatchTable = ({allMatches, teamStats}) => {
                         </TableBody>
                     </Table>
                     <TablePagination
-                        rowsPerPageOptions={[10]}
+                        rowsPerPageOptions={[5,10,20,50,100]}
                         component="div"
                         count={allMatches.length}
                         rowsPerPage={rowsPerPage}
                         page={page}
                         onChangePage={handleChangePage}
+                        onChangeRowsPerPage={handleChangeRowsPerPage}
                     />
                 </TableContainer>
             }
