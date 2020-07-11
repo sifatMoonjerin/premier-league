@@ -33,21 +33,20 @@ function App() {
           stats[match.team2.name] = {win:0,loss:0,draw:0};
         }
         
-
         stats[match.team1.name][t1] += 1;
         stats[match.team2.name][t2] += 1;
         
         return match;
       })).flat()
-      console.log(matches)
-      console.log(stats)
+      setAllMatches(matches)
+      setTeamStats(stats)
     })
   }, [])
 
   return (
     <div className="App">
-      <h1>Premier League</h1>
-      <MatchTable/>
+      <h1>Premier League 2015/16</h1>
+      <MatchTable allMatches={allMatches} teamStats={teamStats}/>
     </div>
   );
 }

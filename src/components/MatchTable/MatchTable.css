@@ -1,0 +1,9 @@
+.matchTable{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.score{
+    color: red;
+    font-weight: 600;
+}
