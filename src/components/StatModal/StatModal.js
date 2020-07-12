@@ -23,13 +23,14 @@ const StatModal = ({ isOpen, closeModal, team, teamStats }) => {
                             <TableRow>
                                 <TableCell 
                                     align="center" 
-                                    colspan="3" 
+                                    colspan="4" 
                                     className='teamTitle'
                                 >
                                     <strong>{team}</strong>
                                 </TableCell>
                             </TableRow>
                             <TableRow>
+                                <TableCell align="center"><strong>{'Played'}</strong></TableCell>
                                 <TableCell align="center"><strong>{'Win'}</strong></TableCell>
                                 <TableCell align="center"><strong>{'Loss'}</strong></TableCell>
                                 <TableCell align="center"><strong>{'Draw'}</strong></TableCell>
@@ -38,6 +39,9 @@ const StatModal = ({ isOpen, closeModal, team, teamStats }) => {
                         <TableBody>
                             <TableRow>
                                 <TableCell align="center" component="th" scope="row">
+                                    {teamStats[team]['win']+teamStats[team]['loss']+teamStats[team]['draw']}
+                                </TableCell>
+                                <TableCell align="center">
                                     {teamStats[team]['win']}
                                 </TableCell>
                                 <TableCell align="center">
