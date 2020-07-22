@@ -14,27 +14,28 @@ function App() {
       const stats = {};
       const rounds = res.data.rounds;
       const matches = rounds.map(round => round.matches.map(match => {
+        console.log(match)
         let t1, t2;
-        if(match.score1 > match.score2){
+        if(match.score.ft[0] > match.score.ft[1]){
           t1 = 'win';
           t2 = 'loss';} 
-        else if(match.score1 < match.score2){
+        else if(match.score.ft[0] < match.score.ft[1]){
           t1 = 'loss';
           t2 = 'win';
         } else{
           t1 = 'draw';
           t2 = 'draw';
         }
-        
-        if(!stats[match.team1.name]){
-          stats[match.team1.name] = {win:0,loss:0,draw:0};
+        console.log(match.team1)
+        if(!stats[match.team1]){
+          stats[match.team1] = {win:0,loss:0,draw:0};
         }
-        if(!stats[match.team2.name]){
-          stats[match.team2.name] = {win:0,loss:0,draw:0};
+        if(!stats[match.team2]){
+          stats[match.team2] = {win:0,loss:0,draw:0};
         }
         
-        stats[match.team1.name][t1] += 1;
-        stats[match.team2.name][t2] += 1;
+        stats[match.team1][t1] += 1;
+        stats[match.team2][t2] += 1;
         
         return match;
       })).flat()

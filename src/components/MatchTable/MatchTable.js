@@ -74,21 +74,21 @@ const MatchTable = ({allMatches, teamStats}) => {
                         {allMatches
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((match) => (
-                            <TableRow key={`${match.team1.key} v ${match.team2.key}`}>
+                            <TableRow key={`${match.team1} v ${match.team2}`}>
                                 <TableCell align="center" component="th" scope="row">
                                     {match.date}
                                 </TableCell>
                                 <TableCell align="center">
                                     <a href='#' onClick={openModal} className='teamName'>
-                                        {match.team1.name}
+                                        {match.team1}
                                     </a>
                                     <span>{' vs '}</span>
                                     <a href='#' onClick={openModal} className='teamName'>
-                                        {match.team2.name}
+                                        {match.team2}
                                     </a>
                                 </TableCell>
                                 <TableCell align="center">
-                                    <span className='score'>{`${match.score1} - ${match.score2}`}</span>
+                                    <span className='score'>{`${match.score.ft[0]} - ${match.score.ft[1]}`}</span>
                                 </TableCell>
                             </TableRow>
                             ))}
